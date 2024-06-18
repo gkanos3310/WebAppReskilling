@@ -19,6 +19,7 @@ const HomePage = () => {
 			</section>
 
 			<img src={mainLogo}></img>
+			<p>Test!!!</p>
 		</div>
 			
 		<Outlet/>
