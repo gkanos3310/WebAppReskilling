@@ -1,0 +1,31 @@
+body {
+    background: white;
+}
+
+p {
+    text-align: center;
+}
+
+.Row {
+    display: table;
+    width: 100%;
+    table-layout: fixed; 
+    border-spacing: 2rem;
+}
+
+.SiteName {
+    display: table-cell;
+    background-color: white;
+    font-style: italic;
+}
+
+.PoemButtons:hover {
+    display: table-cell;
+    border: 1px solid green;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.PoemList {
+    text-align: center;
+}
