@@ -1,3 +1,4 @@
+//FirstPoems.jsx SecondPoems.jsx ThirdPoems.jsx should be a single file cause they have the same logic but sadly I split them in three cause I had some problems with the routing.
 import { Outlet, Link } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
@@ -15,6 +16,7 @@ const FirstPoems = () => {
 			var element = document.getElementById("homeFooter");
 			element.classList.add("hideDiv");
 			
+			//the range is random and can be adapted to be dynamic -> size of all posts / number of buttons
 			const response = await axios.get(baseUrlPosts, {params : {
 				from : 1,
 				to : 15

@@ -15,8 +15,6 @@ const SinglePoem = () => {
 				poemID : event.target.id
 			}});
 
-			console.log('--> ' + response.data.poems[0].title);
-
             setData(response.data.poems);
 		} 
 		catch (err) {
@@ -33,7 +31,7 @@ const SinglePoem = () => {
 
     return (<>
 			<div>
-				{singlePhoto.map((poem) => (poem.title))}
+				
 			</div>
     </>)
 };
