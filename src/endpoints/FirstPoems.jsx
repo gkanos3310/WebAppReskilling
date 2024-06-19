@@ -3,8 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrlPosts = 'https://jsonplaceholder.typicode.com/posts';
-const CHUNK_SIZE = 3;
+const baseUrlPosts = 'http://localhost:3001/posts';
 
 const FirstPoems = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -13,19 +12,15 @@ const FirstPoems = () => {
 
 	async function fetchData() {
 		try {
-			let range = event.target.id.split('-')[1];
-			const response = await axios.get(baseUrlPosts);
-			let batch = response.data.length / CHUNK_SIZE;
+			var element = document.getElementById("homeFooter");
+			element.classList.add("hideDiv");
+			
+			const response = await axios.get(baseUrlPosts, {params : {
+				from : 1,
+				to : 15
+			}});
 
-			console.log(typeof (range - 1));
-			console.log(typeof (batch));
-			console.log((batch));
-
-            response.data = response.data.filter(function( poem ) {
-                return (poem.id >= (range - 1) * batch && poem.id <= range * batch);
-            });
-
-            setData(response.data);
+            setData(response.data.poems);
 		} 
 		catch (err) {
 			const errorMessage = "Error: " + err.message;
@@ -49,7 +44,7 @@ const FirstPoems = () => {
             <ul className='PoemList'>
                 {poems.map((poem) => (
                     <Link to="/singlepoem" key={poem.id}>
-                        <li>Poem #{poem.id}</li>
+                        <button id={poem.id}>Poem #{poem.id}</button>
                     </Link>
 				))}
             </ul>

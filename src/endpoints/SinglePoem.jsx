@@ -1,23 +1,29 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrlPosts = 'https://jsonplaceholder.typicode.com/posts';
-const baseUrlPhotos = 'https://jsonplaceholder.typicode.com/photos';
+const baseUrlPhotos = 'http://localhost:3001/singlepost';
 
 const SinglePoem = () => {
 	const [singlePhoto, setData] = useState(null);
 
 	async function fetchData() {
 		try {
-			const response = await axios.get(baseUrlPhotos);
-            //const singlePhoto = response.data.find((elem) => elem.id == 5);
-            setData(response.data);
+			var element = document.getElementById("homeFooter");
+			element.classList.add("hideDiv");
+			
+			const response = await axios.get(baseUrlPhotos, {params : {
+				poemID : event.target.id
+			}});
+
+			console.log('--> ' + response.data.poems[0].title);
+
+            setData(response.data.poems);
 		} 
 		catch (err) {
-			const errorMessage = "Error: " + err.message;
+			console.log('Error');
 		} 
 		finally {
-			const errorMessage = "Error: ";
+			console.log('Finally');
 		}
 	}
 
@@ -27,9 +33,7 @@ const SinglePoem = () => {
 
     return (<>
 			<div>
-				{singlePhoto.find((elem) => (
-					elem.id == 5
-				))}
+				{singlePhoto.map((poem) => (poem.title))}
 			</div>
     </>)
 };
